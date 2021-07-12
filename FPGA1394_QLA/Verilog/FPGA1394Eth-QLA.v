@@ -612,7 +612,7 @@ wire dir34_ds;
 // Note that ds_enable==1 implies that dout_config_bidir==1. Also, DS2505 output (dout3_ds) does not
 // need to be inverted.
 assign IO1[16] = dout_config_bidir ^ dout[3];
-assign IO1[17] = ds_enable ? (dir34_ds ? dout3_ds : 1'bz) : (dout_config_bidir ^ dout[2]);
+assign IO1[17] = ds_enable ? (dir34_ds ?  (dout3_ds ^~ dout_config_bidir) : 1'bz) : (dout_config_bidir ^ dout[2]);
 assign IO1[18] = dout_config_bidir ^ dout[1];
 assign IO1[19] = dout_config_bidir ^ dout[0];
 
